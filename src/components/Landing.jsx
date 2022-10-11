@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Graph from './Graph/Graph';
 import './landing.css';
 
@@ -23,8 +24,12 @@ const Landing = () => {
 
                     </div>
                     <div className="btn-container">
-                        <button className='btn-grad'>Demo</button>
-                        <button className='btn-grad'>Analyse ➡</button>
+                        <Link to="/LargeNetwork">
+                            <button className='btn-grad'>Demo</button>
+                        </Link>
+                        <Link to="/AnalyzeNetwork">
+                            <button className='btn-grad'>Analyse ➡</button>
+                        </Link>   
                     </div>
                     
                 </div>

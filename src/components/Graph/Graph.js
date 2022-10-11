@@ -19,7 +19,7 @@ const Graph = ()=>{
           graphData={graphData}
           nodeId="id"
           linkCurvature={0.1}
-          nodeLabel="id"
+          // nodeLabel="id"
           nodeAutoColorBy="group"
         />
       </div>
