@@ -1,0 +1,12 @@
+.bg-graph{
+    position: absolute;
+}
+.logo{
+    font-size: xx-large;
+    font-weight: bolder;
+    position: relative;
+    font-size: 72px;
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Graph from './Graph/Graph';
 import './landing.css';
 
@@ -18,13 +19,17 @@ const Landing = () => {
                     <div>
                     <span className='grad-text'> P R O N E T </span>
                     <span className='card-text'>
-                        is Social media Network anaylis concept used with data science to analyse and visualise Protien-Protien Interaction Networks.
+                        is Social Network anaylis concept used with data science to analyse and visualise Protien-Protien Interaction Networks.
                     </span>
 
                     </div>
                     <div className="btn-container">
-                        <button className='btn-grad'>Demo</button>
-                        <button className='btn-grad'>Analyse ➡</button>
+                        <Link to="/LargeNetwork">
+                            <button className='btn-grad'>Demo</button>
+                        </Link>
+                        <Link to="/AnalyzeNetwork">
+                            <button className='btn-grad'>Analyse ➡</button>
+                        </Link>   
                     </div>
                     
                 </div>
