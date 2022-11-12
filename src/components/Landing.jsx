@@ -19,7 +19,7 @@ const Landing = () => {
                     <div>
                     <span className='grad-text'> P R O N E T </span>
                     <span className='card-text'>
-                        is Social media Network anaylis concept used with data science to analyse and visualise Protien-Protien Interaction Networks.
+                        is Social Network anaylis concept used with data science to analyse and visualise Protien-Protien Interaction Networks.
                     </span>
 
                     </div>

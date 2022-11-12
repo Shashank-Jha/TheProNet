@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 import './InputBox.css';
  
+
 export default function InputBox() {
+
+    // let [graphObj,setGraphObj] = useState({});
+    const navigate=useNavigate()
    // Checkbox
    const centralityAlgo = ['DC','BC','CC','EC','IC']
  
@@ -19,12 +23,19 @@ export default function InputBox() {
  
    const handleSubmit = () => {
        var inputNodes = cleanInputData(inputValue);
-       console.log(inputNodes);
-       for(let i=0;i<inputNodes.length;i++){
-           let [src,dest] = inputNodes[i].split(' ');
-           console.log(`src : ${src}`);
-           console.log( `dest : ${dest}`);
-       }
+    //    console.log(inputNodes);
+    //    for(let i=0;i<inputNodes.length;i++){
+    //        let [src,dest] = inputNodes[i].split(' ');
+    //        console.log(`src : ${src}`);
+    //        console.log( `dest : ${dest}`);
+    //    }
+    let graphObjData = createLinkObjArray(inputNodes);
+    console.log();
+    // const graphJSON = JSON.stringify();
+    // setGraphObj(graphObjData);
+    //save in local storage 
+    localStorage.setItem('dataKey', JSON.stringify(graphObjData));
+    navigate("/CustomGraph");
    }
  
    function cleanInputData(input){
@@ -55,14 +66,14 @@ export default function InputBox() {
        <div className="outside-box">
            {/* input box */}
            <div className="first-box">
-               <div className="flex w-full component-preview p-4 items-center justify-center gap-2 font-sans">
+               {/* <div className="flex w-full component-preview p-4 items-center justify-center gap-2 font-sans">
                    <div className="form-control w-full max-w-xs">
                        <label className="label">
                            <span className="label-text">JobID</span>
                        </label>
                        <input type="text" placeholder="please input your jobID" className="input input-accent w-full max-w-xs"/>
                    </div>
-               </div>
+               </div> */}
  
                {/* checkbox */}
                <div className="flex w-full component-preview p-4 items-center justify-center gap-2 font-sans">       
@@ -97,7 +108,7 @@ export default function InputBox() {
                            <span className="label-text"><strong>OR</strong> Upload your own file</span>
                        </label>
                        <input type="file" onChange={(e) => showFile(e)} />
-                       <button className="btn-grad" onClick={handleSubmit}>Submit</button>   
+                    <button className="btn-grad" onClick={handleSubmit}>Submit</button>
                    </div>
                </div>
            </div>
@@ -122,3 +133,33 @@ export default function InputBox() {
        </>
      )
 }
+
+// DATA ANALYSIS
+let links = [];
+function createLinkObjArray(inputNodes){
+    for(let i=0;i<inputNodes.length;i++){
+        let [src,dest] = inputNodes[i].split(' ');
+        links.push({"source":src,"target":dest});
+    }
+    let networkObj = {
+        "nodes" : nodes,
+        "links" : links
+    };
+    return networkObj;
+}
+
+let nodes = [
+    {"id":"P35202",
+     "user":"GPC1_HUMAN",
+     "description":"Cell surface proteoglycan that bears heparan sulfate. Binds, via the heparan sulfate side chains, alpha-4 (V) collagen and participates in Schwann cell myelination (By similarity). May act as a catalyst in increasing the rate of conversion of prion protein PRPN(C) to PRNP(Sc) via associating (via the heparan sulfate side chains) with both forms of PRPN, targeting them to lipid rafts and facilitating their interaction. Required for proper skeletal muscle differentiation by sequestering FGF2 in lipid rafts preventing its binding to receptors (FGFRs) and inhibiting the FGF-mediated signaling"
+    },
+     {
+     "id":"P14164",
+     "user":"ABF1_YEAST",
+     "description":"General regulatory factor (GRF) that contributes to transcriptional activation of a large number of genes, as well as to DNA replication, silencing and telomere structure. Involved in the transcription activation of a subset of ribosomal protein genes. Binds the ARS-elements found in many promoters. Binds to the sequence 5'-TCN7ACG-3'. Influences on genome-wide nucleosome occupancy and affects chromatin structure, and probably dynamics. As a component of the global genome repair (GGR) complex, promotes global genome nucleotide excision repair (GG-NER) which removes DNA damage from nontranscribing DNA. Component of the regulatory network controlling mitotic and meiotic cell cycle progression."
+    },{
+      "id":"Q04174",
+     "user":"SMP3_YEAST",
+     "description":"Alpha-1,2-mannosyltransferase involved in glycosylphosphatidylinositol-anchor biosynthesis. Transfers a fourth mannose to trimannosyl-GPIs during GPI precursor assembly. The presence of a fourth mannose in GPI is essential in fungi. Involved in plasmid maintenance with SMP2."
+    }
+]
